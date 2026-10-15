@@ -8,7 +8,6 @@ codejson-generator is supported by a dedicated team of individuals fulfilling va
 | :---------------- | :---------------- | :---------- |
 | Open Source Lead  | Remy DeCausemaker | CMS OSPO    |
 | Software Engineer | Natalia Luzuriaga | CMS OSPO    |
-| Software Engineer | Isaac Milarsky    | CMS OSPO    |
 | Software Engineer | Dinne Kopelevich  | CMS OSPO    |
 | Software Engineer | Sachin Panayil    | CMS OSPO    |
 
@@ -129,7 +128,7 @@ We'd like to acknowledge the following individuals for their past contributions 
 
 ## codejson-generator Open Source Community Guidelines
 
-This document contains principles and guidelines for participating in the {{ cookiecutter.project_name }} open source community.
+This document contains principles and guidelines for participating in the codejson-generator open source community.
 
 ### Principles
 
