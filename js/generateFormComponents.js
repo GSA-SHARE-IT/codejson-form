@@ -281,7 +281,7 @@ function createFormHeading(agency) {
     				class="usa-link usa-link--external"
     				rel="noreferrer"
     				target="_blank"
-    				href="https://dsacms.github.io/share-it-act-lp/">
+    				href="https://gsa-share-it.github.io/site/">
 					SHARE IT Act Landing Page</a> for more information.
 	</p>\n
 	<p>Looking for examples of a completed code.json? Check out the <a
