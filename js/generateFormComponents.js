@@ -266,8 +266,8 @@ function createFormHeading(agency) {
 
 	const container = document.getElementById('form-header');
 	container.innerHTML = `
-	<h1>Welcome to ${agencyTitle} Code.json Generator!</h1>\n
-	<p><strong>code.json generator</strong> is a web form designed to help ${agencyDescription} teams create a code.json file containing project metadata in compliance with the SHARE IT Act.</p>\n
+	<h1>Welcome to ${agencyTitle} Code.json Generator Form!</h1>\n
+	<p><strong>code.json generator form</strong> is a web form designed to help ${agencyDescription} teams create a code.json file containing project metadata in compliance with the SHARE IT Act.</p>\n
 	<p>Complete the form below to create a code.json file for your project.</p>\n
 	<p>Afterwards, the code.json file must be added to the repository. To save the file, you can: 
 		<ul>
