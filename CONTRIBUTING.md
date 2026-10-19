@@ -45,9 +45,9 @@ We follow the [GitHub Flow Workflow](https://guides.github.com/introduction/flow
 2.  Check out the `dev` branch
 3.  Create a feature branch
 4.  Write code and tests for your change
-5.  From your branch, make a pull request against `GSA-SHARE-IT/codejson-generator/dev`
+5.  From your branch, make a pull request against `GSA-SHARE-IT/codejson-form/dev`
 6.  Work with repo maintainers to get your change reviewed
-7.  Wait for your change to be pulled into `GSA-SHARE-IT/codejson-generator/main`
+7.  Wait for your change to be pulled into `GSA-SHARE-IT/codejson-form/main`
 8.  Delete your feature branch
 
 ### Testing Conventions
@@ -142,7 +142,7 @@ When you submit a pull request on GitHub, it will be reviewed by the project com
 At the moment, we are working on documentation for the code.json schema. Stay tuned.
 
 We also welcome improvements to the project documentation or to the existing
-docs. Please file an [issue](https://github.com/GSA-SHARE-IT/codejson-generator/issues).
+docs. Please file an [issue](https://github.com/GSA-SHARE-IT/codejson-form/issues).
 
 ## Policies
 

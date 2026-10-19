@@ -1,14 +1,14 @@
-# codejson-generator
+# codejson-form
 
 Form to generate an agency code.json
 
-https://dsacms.github.io/codejson-generator/
+https://gsa-share-it.github.io/codejson-form/
 
 ## About the Project
 
 A web form where project teams fill out information about their project and creates a completed code.json for local download to add to repositories. [Form.io](https://github.com/formio/uswds) is used for form generation. The form supports multiple agency-specific schemas and optional AI-assisted field drafting, see [Features](#features) below.
 
-https://dsacms.github.io/codejson-generator/
+https://gsa-share-it.github.io/codejson-form/
 
 To produce the form, a JSON schema is ingested where it transforms each field to a Form.io component. At the moment, this is used for code.json, however this works for any JSON schema!
 
@@ -34,8 +34,8 @@ TODO: Good to include since this is an agency-led project -->
 
 The form can generate a code.json against more than one JSON schema. The schema used is selected with a `page` query parameter on the site URL:
 
-- `https://dsacms.github.io/codejson-generator/` (no parameter) loads the default, agency-agnostic schema at `schemas/gov/schema.json`
-- `https://dsacms.github.io/codejson-generator/?page=cms` loads a stricter, CMS-specific schema at `schemas/cms/schema.json`
+- `https://gsa-share-it.github.io/codejson-form/` (no parameter) loads the default, agency-agnostic schema at `schemas/gov/schema.json`
+- `https://gsa-share-it.github.io/codejson-form/?page=cms` loads a stricter, CMS-specific schema at `schemas/cms/schema.json`
 
 Currently, those are the only two schemas available. Under the hood, `?page=<name>` loads `schemas/<name>/schema.json`, and the project is built so that a maintainer can add a new schema for another agency by creating `schemas/<name>/schema.json`.
 
@@ -140,7 +140,7 @@ The contents of this repository are managed by CMS Open Source Program Office. T
 
 ## Community
 
-The codejson-generator team is taking a community-first and open source approach to the product development of this tool. We believe government software should be made in the open and be built and licensed such that anyone can download the code, run it themselves without paying money to third parties or using proprietary software, and use it as they will.
+The codejson-form team is taking a community-first and open source approach to the product development of this tool. We believe government software should be made in the open and be built and licensed such that anyone can download the code, run it themselves without paying money to third parties or using proprietary software, and use it as they will.
 
 We know that we can learn from a wide variety of communities, including those who will use or will be impacted by the tool, who are experts in technology, or who have experience with similar technologies deployed in other spaces. We are dedicated to creating forums for continuous conversation and feedback to help shape the design and development of the tool.
 
@@ -152,7 +152,7 @@ Principles and guidelines for participating in our open source community are can
 
 <!--
 ## Governance
-Information about how the codejson-generator community is governed may be found in [GOVERNANCE.md](GOVERNANCE.md).
+Information about how the codejson-form community is governed may be found in [GOVERNANCE.md](GOVERNANCE.md).
 -->
 
 ## Feedback
@@ -182,7 +182,7 @@ For more information about our Security, Vulnerability, and Responsible Disclosu
 
 A Software Bill of Materials (SBOM) is a formal record containing the details and supply chain relationships of various components used in building software.
 
-In the spirit of [Executive Order 14028 - Improving the Nation’s Cyber Security](https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/information-technology-category/it-security/executive-order-14028), a SBOM for this repository is provided here: https://github.com/DSACMS/codejson-generator/network/dependencies.
+In the spirit of [Executive Order 14028 - Improving the Nation’s Cyber Security](https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/information-technology-category/it-security/executive-order-14028), a SBOM for this repository is provided here: https://github.com/gsa-share-it/codejson-form/network/dependencies.
 
 For more information and resources about SBOMs, visit: https://www.cisa.gov/sbom.
 
