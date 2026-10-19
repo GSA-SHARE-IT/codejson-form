@@ -288,7 +288,7 @@ function createFormHeading(agency) {
 					class="usa-link usa-link--external"
 					rel="noreferrer"
 					target="_blank"
-					href="https://github.com/GSA-SHARE-IT/gov-codejson">
+					href="https://github.com/GSA-SHARE-IT/codejson-schemas">
 					gov-codejson repository</a>.
 	</p>
 	`;
