@@ -202,7 +202,7 @@ async function addFileToBranch(projectURL, token, codeJSONObj) {
 			body: JSON.stringify({
 				message: "Add codejson to project",
 				committer: {
-					name: "codejson-form form site",
+					name: "codejson-form site",
 					email: "opensource@cms.hhs.gov"
 				},
 				content: encodedContent,
@@ -237,7 +237,7 @@ async function createPR(projectURL, token) {
 			},
 			body: JSON.stringify({
 				title: "Add code.json to Project",
-				body: "Add generated code.json file to project. Code.json was generated via codejson-form form site.",
+				body: "Add generated code.json file to project. Code.json was generated via codejson-form site.",
 				head: NEW_BRANCH,
 				base: 'main',
 
