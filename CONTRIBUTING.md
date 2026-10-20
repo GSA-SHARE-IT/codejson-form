@@ -22,9 +22,12 @@ To run the project locally,
 
 The form also supports multiple agency-specific schemas and an optional, in-browser AI field-drafting feature See the [Features section of the README](README.md#features) for details on how schema selection works and what the AI feature requires (notably a WebGPU-capable browser) before you start testing changes to either.
 
+The form also supports multiple agency-specific schemas and an optional, in-browser AI field-drafting feature See the [Features section of the README](README.md#features) for details on how schema selection works and what the AI feature requires (notably a WebGPU-capable browser) before you start testing changes to either.
+
 ### Team Specific Guidelines
 
 - Please try to keep pull requests to a reasonable size; try to split large contributions to multiple PRs
+- Please create pull requests into `dev` unless the contribution is some kind of bugfix or urgent hotfix
 - Please create pull requests into `dev` unless the contribution is some kind of bugfix or urgent hotfix
 - Document and explain the contribution clearly according to provided standards when possible
 - Feel free to reach out to us if there is any confusion. A list of the project maintainers is found here: [COMMUNITY.md](./COMMUNITY.md)
@@ -45,9 +48,9 @@ We follow the [GitHub Flow Workflow](https://guides.github.com/introduction/flow
 2.  Check out the `dev` branch
 3.  Create a feature branch
 4.  Write code and tests for your change
-5.  From your branch, make a pull request against `GSA-SHARE-IT/codejson-generator/dev`
+5.  From your branch, make a pull request against `GSA-SHARE-IT/codejson-form/dev`
 6.  Work with repo maintainers to get your change reviewed
-7.  Wait for your change to be pulled into `GSA-SHARE-IT/codejson-generator/main`
+7.  Wait for your change to be pulled into `GSA-SHARE-IT/codejson-form/main`
 8.  Delete your feature branch
 
 ### Testing Conventions
@@ -130,6 +133,7 @@ Some important notes regarding the summary line:
 ## Reviewing Pull Requests
 
 When you submit a pull request on GitHub, it will be reviewed by the project community, and once the changes are approved, your commits will be brought into the main branch that deploys the production website.
+When you submit a pull request on GitHub, it will be reviewed by the project community, and once the changes are approved, your commits will be brought into the main branch that deploys the production website.
 
 <!--
 ## Shipping Releases
@@ -140,9 +144,10 @@ When you submit a pull request on GitHub, it will be reviewed by the project com
 ## Documentation
 
 At the moment, we are working on documentation for the code.json schema. Stay tuned.
+At the moment, we are working on documentation for the code.json schema. Stay tuned.
 
 We also welcome improvements to the project documentation or to the existing
-docs. Please file an [issue](https://github.com/GSA-SHARE-IT/codejson-generator/issues).
+docs. Please file an [issue](https://github.com/GSA-SHARE-IT/codejson-form/issues).
 
 ## Policies
 

@@ -1,5 +1,5 @@
 {
-  "name": "codejson-generator",
+  "name": "codejson-form",
   "version": "",
   "description": "Form to generate code.json",
   "longDescription": "A web form where project teams fill out information about their project and creates a completed code.json to add to repositories as part of SHARE IT Act compliance.",
@@ -8,7 +8,7 @@
     "licenses": [
       {
         "name": "CC0-1.0",
-        "URL": "https://github.com/DSACMS/codejson-generator/blob/main/LICENSE"
+        "URL": "https://github.com/gsa-share-it/codejson-form/blob/main/LICENSE"
       }
     ],
     "usageType": [
@@ -17,10 +17,10 @@
     "exemptionText": ""
   },
   "organization": "Centers for Medicare & Medicaid Services",
-  "repositoryURL": "https://github.com/DSACMS/codejson-generator",
-  "repositoryHost": "github.com/DSACMS",
+  "repositoryURL": "https://github.com/gsa-share-it/codejson-form",
+  "repositoryHost": "github.com/gsa-share-it",
   "repositoryVisibility": "public",
-  "homepageURL": "https://dsacms.github.io/codejson-generator/",
+  "homepageURL": "https://gsa-share-it.github.io/codejson-form/",
   "downloadURL": "",
   "disclaimerURL": "",
   "disclaimerText": "",
@@ -46,7 +46,7 @@
   ],
   "maintenance": "internal",
   "contractNumber": [],
-  "SBOM": "https://github.com/DSACMS/codejson-generator/network/dependencies",
+  "SBOM": "https://github.com/gsa-share-it/codejson-form/network/dependencies",
   "relatedCode": [],
   "reusedCode": [],
   "partners": [],
@@ -63,7 +63,7 @@
     "email": "opensource@cms.hhs.gov",
     "name": "CMS Open Source Team"
   },
-  "feedbackMechanism": "https://github.com/DSACMS/codejson-generator/issues",
+  "feedbackMechanism": "https://github.com/gsa-share-it/codejson-form/issues",
   "AIUseCaseID": "0",
   "localisation": false,
   "repositoryType": "website",

@@ -61,7 +61,7 @@ function determineType(field) {
 		if (field.format == "date-time") {
 			return "datetime";
 		}
-		return "textfield";
+		return "textfield"; 
 	}
 }
 
@@ -266,8 +266,8 @@ function createFormHeading(agency) {
 
 	const container = document.getElementById('form-header');
 	container.innerHTML = `
-	<h1>Welcome to ${agencyTitle} Code.json Generator!</h1>\n
-	<p><strong>code.json generator</strong> is a web form designed to help ${agencyDescription} teams create a code.json file containing project metadata in compliance with the SHARE IT Act.</p>\n
+	<h1>Welcome to ${agencyTitle} Code.json Generator Form!</h1>\n
+	<p><strong>code.json generator form</strong> is a web form designed to help ${agencyDescription} teams create a code.json file containing project metadata in compliance with the SHARE IT Act.</p>\n
 	<p>Complete the form below to create a code.json file for your project.</p>\n
 	<p>Afterwards, the code.json file must be added to the repository. To save the file, you can: 
 		<ul>
@@ -281,14 +281,14 @@ function createFormHeading(agency) {
     				class="usa-link usa-link--external"
     				rel="noreferrer"
     				target="_blank"
-    				href="https://dsacms.github.io/share-it-act-lp/">
+    				href="https://gsa-share-it.github.io/site/">
 					SHARE IT Act Landing Page</a> for more information.
 	</p>\n
 	<p>Looking for examples of a completed code.json? Check out the <a
 					class="usa-link usa-link--external"
 					rel="noreferrer"
 					target="_blank"
-					href="https://github.com/GSA-SHARE-IT/gov-codejson">
+					href="https://github.com/GSA-SHARE-IT/codejson-schemas">
 					gov-codejson repository</a>.
 	</p>
 	`;

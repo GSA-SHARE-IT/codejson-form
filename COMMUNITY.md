@@ -1,6 +1,6 @@
 # COMMUNITY.md
 
-codejson-generator is supported by a dedicated team of individuals fulfilling various roles to ensure its success, security, and alignment with government standards and agency goals.
+codejson-form is supported by a dedicated team of individuals fulfilling various roles to ensure its success, security, and alignment with government standards and agency goals.
 
 ## Project Members
 
@@ -13,11 +13,11 @@ codejson-generator is supported by a dedicated team of individuals fulfilling va
 
 See [CODEOWNERS.md](.github/CODEOWNERS.md) for a list of those responsible for the code and documentation in this repository.
 
-See [Community Guidelines](#codejson-generator-open-source-community-guidelines) on principles and guidelines for participating in this open source project.
+See [Community Guidelines](#codejson-form-open-source-community-guidelines) on principles and guidelines for participating in this open source project.
 
 ## Roles & Responsibilities
 
-The members of codejson-generator community are responsible for guiding its development, ensuring quality standards, and fostering a collaborative environment. They play a vital role in making decisions about code contributions, handling releases, and ensuring the project meets its goals and objectives. Below is a list of the key members and their specific roles and responsibilities. We are eagerly seeking individuals who are interested in joining the community and helping shape and support these roles.
+The members of codejson-form community are responsible for guiding its development, ensuring quality standards, and fostering a collaborative environment. They play a vital role in making decisions about code contributions, handling releases, and ensuring the project meets its goals and objectives. Below is a list of the key members and their specific roles and responsibilities. We are eagerly seeking individuals who are interested in joining the community and helping shape and support these roles.
 
 ### Maintainers:
 
@@ -58,7 +58,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for more details on the release process.
 
 <!-- TODO: A list of CONTRIBUTORS is generated below using contributors.yml located in the workflows directory. In order to automatically update the COMMUNITY.md, you must enter a secret into your Secrets and Variables under Actions within your repository settings. The name of the secret must be PUSH_TO_PROTECTED_BRANCH and the value must be a Personal Access Token with specific permissions. Please follow [this link](https://github.com/CasperWA/push-protected?tab=readme-ov-file#notes-on-token-and-user-permissions) for more information. -->
 
-![](<https://img.shields.io/github/contributors/DSACMS/codejson-generator?style=flat-square&label=Contributor%20Count(incl.%20bots)>)
+![](<https://img.shields.io/github/contributors/gsa-share-it/codejson-form?style=flat-square&label=Contributor%20Count(incl.%20bots)>)
 
 <!-- readme: contributors -start -->
 <table>
@@ -126,9 +126,9 @@ We'd like to acknowledge the following individuals for their past contributions 
 
 - [@IsaacMilarky](https://github.com/IsaacMilarky)
 
-## codejson-generator Open Source Community Guidelines
+## codejson-form Open Source Community Guidelines
 
-This document contains principles and guidelines for participating in the codejson-generator open source community.
+This document contains principles and guidelines for participating in the codejson-form open source community.
 
 ### Principles
 
@@ -148,7 +148,7 @@ All community members are expected to adhere to our [Code of Conduct](CODE_OF_CO
 
 Information on contributing to this repository is available in our [Contributing file](CONTRIBUTING.md).
 
-When participating in codejson-generator open source community conversations and spaces, we ask individuals to follow the following guidelines:
+When participating in codejson-form open source community conversations and spaces, we ask individuals to follow the following guidelines:
 
 - Embrace a culture of learning, and educate each other. We are all entering this conversation from different starting points and with different backgrounds. There are no dumb questions.
 - Take space and give space. We strive to create an equitable environment in which all are welcome and able to participate. We hope individuals feel comfortable voicing their opinions and providing contributions and will do our best to recognize and make space for individuals who may be struggling to find space here. Likewise, we expect individuals to recognize when they are taking up significant space and take a step back to allow room for others.
