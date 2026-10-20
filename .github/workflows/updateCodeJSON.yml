@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Update code.json
-        uses: gsa-share-it/automated-codejson-form@main
+        uses: DSACMS/automated-codejson-generator@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: "main"
