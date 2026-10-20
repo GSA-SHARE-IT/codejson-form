@@ -61,7 +61,7 @@ function determineType(field) {
 		if (field.format == "date-time") {
 			return "datetime";
 		}
-		return "textfield";
+		return "textfield"; 
 	}
 }
 
