@@ -141,6 +141,7 @@ function createComponent(fieldName, fieldObject, requiredArray, prefix) {
 				type: "radio",
 				input: true,
 				description: fieldObject["description"],
+				customClass: fieldName === "vcs" ? "vcs-field" : "",
 				validate
 			};
 		case "selectboxes":
@@ -241,6 +242,7 @@ function createComponent(fieldName, fieldObject, requiredArray, prefix) {
 				type: "datagrid",
 				input: true,
 				components: [],
+				description: fieldObject["description"],
 				validate
 			};
 		case "content":
@@ -282,14 +284,14 @@ function createFormHeading(agency) {
     				rel="noreferrer"
     				target="_blank"
     				href="https://gsa-share-it.github.io/site/">
-					SHARE IT Act Landing Page</a> for more information.
+					SHARE IT Act Landing Page</a>for more information.
 	</p>\n
 	<p>Looking for examples of a completed code.json? Check out the <a
 					class="usa-link usa-link--external"
 					rel="noreferrer"
 					target="_blank"
 					href="https://github.com/GSA-SHARE-IT/codejson-schemas">
-					gov-codejson repository</a>.
+					codejson-schemas repository</a>.
 	</p>
 	`;
 }
@@ -320,20 +322,7 @@ function createAllComponents(schema, prefix = "") {
 			else if (fieldComponent.type === "datagrid") {
 				fieldComponent.components = createAllComponents(value.items, fullKey);
 			}
-
 			components.push(fieldComponent);
-
-			// Add description below all object fields 
-			if (fieldComponent.type === "datagrid") {
-				const labelKey = `${key}-description`;
-				const label = {
-					type: "content",
-					content: value.description,
-					className: ".margin-bottom-neg-205"
-				}
-				const labelComponent = createComponent(labelKey, label, []);
-				components.push(labelComponent);
-			}
 		}
 	}
 

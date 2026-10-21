@@ -1,5 +1,8 @@
 body {
-    padding: 20px 40px;
+    border: 5px solid #f4f4f4;
+    border-radius: 15px;
+    margin: 1%;
+    padding: 1% 15%;
 }
 
 textarea {
@@ -82,6 +85,148 @@ textarea {
     background-size: contain;
 }
 
+label {
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+
+.text-base-dark {
+    font-size: .9rem;
+    font-weight: 400;
+    color: #323131;
+    margin-top: 2px;
+}
+
+.vcs-field .usa-radio__label {
+    text-transform: none;
+}
+
+.formio-form-group:not(.formio-component-datagrid):not(.formio-component-container):not(.formio-component-button) {
+    display: flex;
+    flex-direction: column;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.formio-form-group:not(.formio-component-datagrid):not(.formio-component-container):not(.formio-component-button) > .usa-label {
+    order: 1;
+}
+
+.formio-form-group:not(.formio-component-datagrid):not(.formio-component-container):not(.formio-component-button) > .text-base-dark {
+    order: 2;
+}
+
+.formio-form-group:not(.formio-component-datagrid):not(.formio-component-container):not(.formio-component-button) > [ref="element"],
+.formio-form-group:not(.formio-component-datagrid):not(.formio-component-container):not(.formio-component-button) > [ref="selectContainer"] {
+    order: 3;
+}
+
+.formio-form-group:not(.formio-component-datagrid):not(.formio-component-container):not(.formio-component-button) > .formio-errors {
+    order: 4;
+}
+
+.formio-component-container.formio-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.formio-component-container.formio-form-group > .usa-label {
+    order: 1;
+}
+
+.formio-component-container.formio-form-group > .text-base-dark {
+    order: 2;
+}
+
+.formio-component-container.formio-form-group > div[ref^="nested-"] {
+    order: 3;
+}
+
+.formio-component-container.formio-form-group > .formio-errors {
+    order: 4;
+}
+
+.formio-component-datagrid.formio-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.formio-component-datagrid.formio-form-group > .usa-label {
+    order: 1;
+}
+
+.formio-component-datagrid.formio-form-group > .text-base-dark {
+    order: 2;
+}
+
+.formio-component-datagrid.formio-form-group > .formio-errors {
+    order: 3;
+}
+
+.formio-component-datagrid.formio-form-group > table {
+    order: 4;
+}
+
+.usa-fieldset {
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+}
+
+.usa-fieldset legend {
+    order: 0;
+}
+
+.usa-fieldset .legend-wrapper {
+    order: 1;
+}
+
+.usa-fieldset .text-base-dark {
+    order: 2;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.usa-fieldset .usa-radio,
+.usa-fieldset .usa-checkbox {
+    order: 3;
+}
+
+.usa-fieldset .formio-errors {
+    order: 4;
+}
+
+.optional-field-wrapper {
+    margin-bottom: 1rem;
+}
+
+.optional-field-toggle {
+    background: none;
+    border: none;
+    color: #005ea2;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.optional-field-toggle:hover {
+    text-decoration: underline;
+}
+
+.optional-field-toggle-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -93,6 +238,7 @@ textarea {
         transform: translateY(0);
     }
 }
+
 .ai-row {
     padding: 8px 0;
     border-bottom: 1px solid #dfe1e2;
