@@ -1,392 +1,386 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<meta charset="UTF-8">
-<meta name="description" content="Form to generate a code.json file containing repository metadata">
+	<meta charset="UTF-8">
+	<meta name="description" content="Form to generate a code.json file containing repository metadata">
 
-<head>
-	<title>code.json metadata</title>
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<link rel="stylesheet" href="css/styles.css">
+	<head>
+		<title>code.json metadata</title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.1.0/css/uswds.min.css">
-	<link rel="stylesheet" href="https://cdn.form.io/js/formio.form.min.css">
-	<link rel="stylesheet" href="https://cdn.form.io/uswds/uswds.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.1.0/js/uswds.min.js"></script>
-	<script src="https://cdn.form.io/js/formio.form.min.js"></script>
-	<script src="https://cdn.form.io/uswds/uswds.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.1.0/css/uswds.min.css">
+		<link rel="stylesheet" href="https://cdn.form.io/js/formio.form.min.css">
+		<link rel="stylesheet" href="https://cdn.form.io/uswds/uswds.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.1.0/js/uswds.min.js"></script>
+		<script src="https://cdn.form.io/js/formio.form.min.js"></script>
+		<script src="https://cdn.form.io/uswds/uswds.min.js"></script>
 
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+		<link rel="icon" type="image/x-icon" href="favicon.ico">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Render the form -->
-	<script src="js/generateFormComponents.js"></script>
-	<script src="js/formDataToJson.js"></script>
-	<script src="js/exemptionQuizHandler.js"></script>
-	<script src="js/autoGenerateFields.js"></script>
+		<!-- Render the form -->
+		<script src="js/generateFormComponents.js"></script>
+		<script src="js/formDataToJson.js"></script>
+		<script src="js/exemptionQuizHandler.js"></script>
+		<script src="js/autoGenerateFields.js"></script>
+		<script src="js/collapseOptionalFields.js"></script>
 
-	<!-- In-browser AI field suggestions -->
-	<script src="js/ai/aiContext.js"></script>
-	<script src="js/ai/determinations.js"></script>
-	<script src="js/ai/aiEngine.js"></script>
-	<script src="js/ai/aiReviewPanel.js"></script>
-	<script src="js/ai/aiOrchestrator.js"></script>
-	
-	<!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
-	<script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=HHS&subagency=CMS&sitetopic=metadata&siteplatform=GitHubPages" id="_fed_an_ua_tag"></script>
+		<!-- In-browser AI field suggestions -->
+		<script src="js/ai/aiContext.js"></script>
+		<script src="js/ai/determinations.js"></script>
+		<script src="js/ai/aiEngine.js"></script>
+		<script src="js/ai/aiReviewPanel.js"></script>
+		<script src="js/ai/aiOrchestrator.js"></script>
+		
+		<!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
+		<script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=HHS&subagency=CMS&sitetopic=metadata&siteplatform=GitHubPages" id="_fed_an_ua_tag"></script>
 
-	<script type="text/javascript">
-		createFormComponents()
-			.then((components) => {
-				Formio.use(uswds);
-				Formio.createForm(document.getElementById("formio"), {
-					display: "form",
-					components: components,
-				}).then(function (form) {
-					window.formIOInstance = form;
+		<script type="text/javascript">
+			createFormComponents()
+				.then((components) => {
+					Formio.use(uswds);
+					Formio.createForm(document.getElementById("formio"), {
+						display: "form",
+						components: components,
+					}).then(function (form) {
+						window.formIOInstance = form;
 
-					// form start must only fire once
-					let formStartFired = false;
-					form.on("focus", function () {
-						if (!formStartFired) {
-							formStartFired = true;
-							gas4('form_start', {
+						// form start must only fire once
+						let formStartFired = false;
+						form.on("focus", function () {
+							if (!formStartFired) {
+								formStartFired = true;
+								gas4('form_start', {
+									'form_name': 'code.json form',
+									'form_id': 'formio',
+									'form_destination': window.location.pathname
+								});
+							}
+						});
+
+						form.on("submit", function (submission) {
+							console.log("Form Submission here:", submission);
+							createCodeJson(submission.data);
+
+							gas4('form_submit', {
 								'form_name': 'code.json form',
 								'form_id': 'formio',
-								'form_destination': window.location.pathname
+								'form_destination': window.location.pathname,
+								'form_submit_text': 'Generate code.json metadata'
 							});
-						}
-					});
-
-					form.on("submit", function (submission) {
-						console.log("Form Submission here:", submission);
-						createCodeJson(submission.data);
-
-						gas4('form_submit', {
-							'form_name': 'code.json form',
-							'form_id': 'formio',
-							'form_destination': window.location.pathname,
-							'form_submit_text': 'Generate code.json metadata'
 						});
-					});
+					})
 				})
-			})
-			.catch((error) => {
-				console.error("Error creating components:", error);
-			});
-	</script>
-</head>
+				.catch((error) => {
+					console.error("Error creating components:", error);
+				});
+		</script>
+	</head>
+	<body>
+		<div id="form-header"></div>
+		<!-- Exemptions Quiz: Simple Classification -->
+		<div class="exemptions" id="start">
+			<div class="exemptions-header">
+				<div class="step-header">
+					<div class="step-number">1</div>
+					<h2>Identify your project's classification</h2>
+				</div>
+			</div>
+			<div id="exemptions-quiz-container" class="exemptions-quiz-container">
+				<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading">
+					My project is considered:
+				</h3>
+				<div id="exemptions-quiz">
+					<fieldset class="usa-fieldset">
+						<div class="usa-radio">
+							<input class="usa-radio__input usa-radio__input--tile" id="check-open-source" type="radio"
+								name="exemption-condition" value="openSource" />
+							<label class="usa-radio__label" for="check-open-source">Open Source
+								<span class="usa-checkbox__label-description">This project is publicly available
+									and licensed under terms that allow others to use, modify, and distribute it (e.g.
+									github.com)</span></label>
+						</div>
+						<div class="usa-radio">
+							<input class="usa-radio__input usa-radio__input--tile" id="check-govt-reuse" type="radio"
+								name="exemption-condition" value="governmentWideReuse" />
+							<label class="usa-radio__label" for="check-govt-reuse">Government Wide Reuse
+								<span class="usa-checkbox__label-description">The project is available internally for
+									government wide use (e.g. github.cms.gov)</span></label>
+						</div>
+						<div class="usa-radio">
+							<input class="usa-radio__input usa-radio__input--tile" id="check-exempt" type="radio"
+								name="exemption-condition" value="exempt" />
+							<label class="usa-radio__label" for="check-exempt">None of the above
+								<span class="usa-checkbox__label-description">The project may be considered exempted from
+									sharing and reuse as per the SHARE IT Act and M-16-21. </span></label>
+						</div>
+					</fieldset>
 
-<body>
-	<div id="form-header"></div>
-	<!-- Exemptions Quiz: Simple Classification -->
-	<div class="exemptions" id="start">
-		<div class="exemptions-header">
+					<button class="usa-button margin-top-2" type="button" id="start"
+						onclick="determineExemptions(event)">Submit</button>
+				</div>
+			</div>
+			<div class="results" style="display: none;">
+				<div class="results-container">
+					<div class="exemption-result"></div>
+				</div>
+				<button class="usa-button usa-button--unstyled" id="start" onclick="handleClick(event)">Try Again</button>
+			</div>
+		</div>
+
+		<!-- Exemptions Quiz: SHARE IT Act -->
+		<div class="exemptions" id="share-it-act" style="display: none;">
+			<div class="exemptions-header">
+				<div class="step-header">
+					<div class="step-number">1b</div>
+					<h2>Is my project exempted from the SHARE IT Act?</h2>
+				</div>
+			</div>
+			<div id="exemptions-quiz-container" class="exemptions-quiz-container">
+				<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading">
+					Answer the series of questions below to determine if your project falls under the exemption categories
+					according to the SHARE IT Act.
+				</h3>
+				<div id="exemptions-quiz">
+					<fieldset class="usa-fieldset">
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-national-security" type="checkbox"
+								name="exemption-condition" value="exemptByNationalSecurity">
+							<label class="usa-checkbox__label" for="check-national-security">
+								Is the project primarily for use in national security systems, as defined in Section 11103
+								of title 40, USC?</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-intelligence-community" type="checkbox"
+								name="exemption-condition" value="exemptByNationalIntelligence">
+							<label class="usa-checkbox__label" for="check-intelligence-community">Is the project created by
+								an agency or part of an agency that is an element of the intelligence community, as defined
+								in section 3(4) of the National Security Act of 1947?</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-freedom-information-act" type="checkbox"
+								name="exemption-condition" value="exemptByFOIA">
+							<label class="usa-checkbox__label" for="check-freedom-information-act">Is the project exempt
+								under section 552(b) of title 5, USC (commonly known as the "Freedom of Information
+								Act")?</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-EAR" type="checkbox" name="exemption-condition"
+								value="exemptByEAR">
+							<label class="usa-checkbox__label" for="check-EAR">Is the project prohibited under Export
+								Administration Regulations?</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-ITAR" type="checkbox" name="exemption-condition"
+								value="exemptByITAR">
+							<label class="usa-checkbox__label" for="check-ITAR">Is the project prohibited under
+								International Traffic in Arms Regulations (ITAR)?</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-TSA" type="checkbox" name="exemption-condition"
+								value="exemptByTSA">
+							<label class="usa-checkbox__label" for="check-TSA">Is the project prohibited under Regulations
+								of the Transportation Security Administration related to the protection of sensitive
+								information?
+							</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-classified-information" type="checkbox"
+								name="exemption-condition" value="exemptByClassifiedInformation">
+							<label class="usa-checkbox__label" for="check-classified-information">Is the project prohibited
+								under federal laws and regulations governing the sharing of classified information? </label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-privacy" type="checkbox" name="exemption-condition"
+								value="exemptByPrivacyRisk">
+							<label class="usa-checkbox__label" for="check-privacy">
+								Does the source code create an identifiable risk to the privacy of an individual?</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="share-it-act-check-none" type="checkbox"
+								name="exemption-condition" value="share-it-act-none">
+							<label class="usa-checkbox__label" for="share-it-act-check-none">None of the above </label>
+						</div>
+					</fieldset>
+					<button class="usa-button margin-top-2" type="button" id="share-it-act"
+						onclick="determineExemptions(event)">Submit</button>
+				</div>
+			</div>
+			<div class="results" style="display: none;">
+				<div class="results-container">
+					<div class="exemption-result"></div>
+				</div>
+				<button class="usa-button" id="share-it-act" onclick="handleClick(event)">Next</button>
+			</div>
+		</div>
+
+		<!-- Exemptions Quiz: M-16-21 -->
+		<div class="exemptions" id="m-16-21" style="display: none;">
+			<div class="exemptions-header">
+				<div class="step-header">
+					<div class="step-number">1c</div>
+					<h2>Is my project exempted from M-16-21?</h2>
+				</div>
+			</div>
+			<div class="exemptions-quiz-container">
+				<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading">
+					Answer the series of questions below to determine if your project falls under the exemption categories
+					according to M-16-21 Act.
+				</h3>
+				<div id="exemptions-quiz">
+					<fieldset class="usa-fieldset">
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-patent-and-ip" type="checkbox"
+								name="exemption-condition" value="exemptByIPRestriction">
+							<label class="usa-checkbox__label" for="check-patent-and-ip">
+								Is sharing of the source code limited by patent or intellectual property restrictions?
+							</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-agency-systems" type="checkbox"
+								name="exemption-condition" value="exemptByAgencySystem">
+							<label class="usa-checkbox__label" for="check-agency-systems">
+								Does sharing of the source code create an identifiable risk to the stability, security, or
+								integrity of the agency’s systems or personnel?
+							</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-agency-mission" type="checkbox"
+								name="exemption-condition" value="exemptByAgencyMission">
+							<label class="usa-checkbox__label" for="check-agency-mission">
+								Does sharing of the source code create an identifiable risk to agency mission, programs, or
+								operations?
+							</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-CIO" type="checkbox" name="exemption-condition"
+								value="exemptByCIO">
+							<label class="usa-checkbox__label" for="check-CIO">
+								Does the CIO believes it is in the national interest to exempt sharing the source code?
+							</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="check-date" type="checkbox" name="exemption-condition"
+								value="exemptByPolicyDate">
+							<label class="usa-checkbox__label" for="check-date">
+								Was the release was created prior to the M-16-21 policy (August 8, 2016)
+							</label>
+						</div>
+						<div class="usa-checkbox">
+							<input class="usa-checkbox__input" id="m-16-21-check-none" type="checkbox"
+								name="exemption-condition" value="m-16-21-none">
+							<label class="usa-checkbox__label" for="m-16-21-check-none">None of the above </label>
+						</div>
+					</fieldset>
+					<button class="usa-button margin-top-2" type="button" id="m-16-21"
+						onclick="determineExemptions(event)">Submit</button>
+				</div>
+			</div>
+			<div class="results" style="display: none;">
+				<div class="results-container">
+					<div class="exemption-result"></div>
+				</div>
+				<button class="usa-button usa-button--unstyled" id="m-16-21" onclick="handleClick(event)">Try
+					Again</button>
+			</div>
+		</div>
+
+		<!-- Field Auto-Generation Notification -->
+		<div class="usa-alert" id="notification" style="display:none;">
+			<div class="usa-alert__body">
+				<h4 class="usa-alert__heading"></h4>
+				<p class="usa-alert__text" id="notification-message"></p>
+			</div>
+		</div>
+
+		<!-- Field Auto-Generation -->
+		<div class="auto-generation">
+			<div class="auto-generation-header">
+				<div class="step-header">
+					<div class="step-number">2</div>
+					<h2>Auto Generate Fields</h2>
+				</div>
+				<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading"> Enter your repository's
+					GitHub URL in order to automatically pre-fill some of the
+					fields in this form </h3>
+				<p><i>This currently only works on <b>public</b> repositories</i></p>
+			</div>
+			<form id="github-url-form">
+				<label class="usa-label" for="repo-url">GitHub Repository URL</label>
+				<input class="usa-input" id="repo-url" name="repo-url" />
+				<button class="usa-button margin-top-2" id="repo-url-button">Submit</button>
+				<button class="usa-button usa-button--outline margin-top-2" type="button" id="ai-enhance"
+					style="display:none;">Enhance with AI</button>
+			</form>
+		</div>
+
+		<!-- AI Field Suggestions -->
+		<div class="auto-generation" id="ai-panel" style="display:none;">
+			<div class="auto-generation-header">
+				<div class="step-header">
+					<div class="step-number">2b</div>
+					<h2>Draft the remaining fields with AI</h2>
+				</div>
+				<h3 class="usa-heading margin-top-neg-05 margin-bottom-1">Llama 3.2 1B reads your
+					repository's README and drafts the fields that could not be worked out from the
+					repository metadata alone. It runs entirely on your computer so nothing is sent to
+					any server. The first run downloads about 880 MB and caches it for later visits, so keep
+					this tab open while it loads.</h3>
+			</div>
+			<div id="ai-controls">
+				<button class="usa-button margin-top-2" type="button" id="ai-run" disabled></button>
+				<button class="usa-button usa-button--outline margin-top-2" type="button" id="ai-cancel"
+					style="display:none;">Cancel</button>
+				<button class="usa-button usa-button--unstyled margin-top-2" type="button"
+					id="ai-clear-cache">Clear cached model files</button>
+			</div>
+			<div id="ai-progress-wrap" style="display:none;">
+				<label class="usa-label" for="ai-progress" id="ai-progress-label">Loading model</label>
+				<progress id="ai-progress" max="100" value="0" aria-labelledby="ai-progress-label"></progress>
+				<p class="usa-hint" id="ai-progress-text" aria-live="polite"></p>
+				<pre class="ai-stream" id="ai-stream" aria-live="polite"></pre>
+			</div>
+			<div id="ai-review" style="display:none;">
+				<h3 class="usa-heading margin-bottom-05">Review AI drafts</h3>
+				<p class="usa-hint margin-top-0">These are drafted by the model, not read from your
+					repository. Uncheck anything you do not want, edit the text, then apply.
+					<strong>Verify every value before you submit.</strong></p>
+				<fieldset class="usa-fieldset" id="ai-review-list"></fieldset>
+				<button class="usa-button margin-top-2" type="button" id="ai-apply">Apply selected to form</button>
+				<button class="usa-button usa-button--outline margin-top-2" type="button" id="ai-discard">Discard</button>
+			</div>
+		</div>
+
+		<!-- Form header -->
+		<div class="form-subheader">
 			<div class="step-header">
-				<div class="step-number">1</div>
-				<h2>Identify your project's classification</h2>
+				<div class="step-number">3</div>
+				<h2>Complete the entire form to generate the code.json file</h2>
+			</div>
+			<p class="usa-heading margin-top-neg-05 margin-bottom-2"><em>A red asterisk (<span style="color:red">*</span>)
+					indicates a required field</em></p>
+		</div>
+
+		<!-- Generated Form -->
+		<div id="formio"></div>
+
+		<!-- code.json Generated Output -->
+		<div id="output">
+			<label class="usa-label" for="json-result"><strong>Your code.json metadata</strong></label>
+			<textarea class="usa-textarea" rows="30" id="json-result" name="json-result" readonly></textarea>
+			<div class="button-actions">
+				<button class="usa-button usa-button--outline" type="button" href="#"
+					onclick="copyToClipboard(event)">Copy</button>
+				<button class="usa-button usa-button--outline" type="button" href="#"
+					onclick="downloadFile(event)">Download</button>
+				<button class="usa-button usa-button--outline" type="button" href="#"
+					onclick="createProjectPR(event)">Create
+					Pull
+					Request</button>
+				<button class="usa-button usa-button--outline" type="button" href="#"
+					onclick="emailFile(event)">Email</button>
 			</div>
 		</div>
-		<div id="exemptions-quiz-container" class="exemptions-quiz-container">
-			<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading">
-				My project is considered:
-			</h3>
-			<div id="exemptions-quiz">
-				<fieldset class="usa-fieldset">
-					<div class="usa-radio">
-						<input class="usa-radio__input usa-radio__input--tile" id="check-open-source" type="radio"
-							name="exemption-condition" value="openSource" />
-						<label class="usa-radio__label" for="check-open-source">Open Source
-							<span class="usa-checkbox__label-description">This project is publicly available
-								and licensed under terms that allow others to use, modify, and distribute it (e.g.
-								github.com)</span></label>
-					</div>
-					<div class="usa-radio">
-						<input class="usa-radio__input usa-radio__input--tile" id="check-govt-reuse" type="radio"
-							name="exemption-condition" value="governmentWideReuse" />
-						<label class="usa-radio__label" for="check-govt-reuse">Government Wide Reuse
-							<span class="usa-checkbox__label-description">The project is available internally for
-								government wide use (e.g. github.cms.gov)</span></label>
-					</div>
-					<div class="usa-radio">
-						<input class="usa-radio__input usa-radio__input--tile" id="check-exempt" type="radio"
-							name="exemption-condition" value="exempt" />
-						<label class="usa-radio__label" for="check-exempt">None of the above
-							<span class="usa-checkbox__label-description">The project may be considered exempted from
-								sharing and reuse as per the SHARE IT Act and M-16-21. </span></label>
-					</div>
-				</fieldset>
-
-				<button class="usa-button margin-top-2" type="button" id="start"
-					onclick="determineExemptions(event)">Submit</button>
-			</div>
-		</div>
-		<div class="results" style="display: none;">
-			<div class="results-container">
-				<div class="exemption-result"></div>
-			</div>
-			<button class="usa-button usa-button--unstyled" id="start" onclick="handleClick(event)">Try Again</button>
-		</div>
-	</div>
-
-	<!-- Exemptions Quiz: SHARE IT Act -->
-	<div class="exemptions" id="share-it-act" style="display: none;">
-		<div class="exemptions-header">
-			<div class="step-header">
-				<div class="step-number">1b</div>
-				<h2>Is my project exempted from the SHARE IT Act?</h2>
-			</div>
-		</div>
-		<div id="exemptions-quiz-container" class="exemptions-quiz-container">
-			<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading">
-				Answer the series of questions below to determine if your project falls under the exemption categories
-				according to the SHARE IT Act.
-			</h3>
-			<div id="exemptions-quiz">
-				<fieldset class="usa-fieldset">
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-national-security" type="checkbox"
-							name="exemption-condition" value="exemptByNationalSecurity">
-						<label class="usa-checkbox__label" for="check-national-security">
-							Is the project primarily for use in national security systems, as defined in Section 11103
-							of title 40, USC?</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-intelligence-community" type="checkbox"
-							name="exemption-condition" value="exemptByNationalIntelligence">
-						<label class="usa-checkbox__label" for="check-intelligence-community">Is the project created by
-							an agency or part of an agency that is an element of the intelligence community, as defined
-							in section 3(4) of the National Security Act of 1947?</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-freedom-information-act" type="checkbox"
-							name="exemption-condition" value="exemptByFOIA">
-						<label class="usa-checkbox__label" for="check-freedom-information-act">Is the project exempt
-							under section 552(b) of title 5, USC (commonly known as the "Freedom of Information
-							Act")?</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-EAR" type="checkbox" name="exemption-condition"
-							value="exemptByEAR">
-						<label class="usa-checkbox__label" for="check-EAR">Is the project prohibited under Export
-							Administration Regulations?</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-ITAR" type="checkbox" name="exemption-condition"
-							value="exemptByITAR">
-						<label class="usa-checkbox__label" for="check-ITAR">Is the project prohibited under
-							International Traffic in Arms Regulations (ITAR)?</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-TSA" type="checkbox" name="exemption-condition"
-							value="exemptByTSA">
-						<label class="usa-checkbox__label" for="check-TSA">Is the project prohibited under Regulations
-							of the Transportation Security Administration related to the protection of sensitive
-							information?
-						</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-classified-information" type="checkbox"
-							name="exemption-condition" value="exemptByClassifiedInformation">
-						<label class="usa-checkbox__label" for="check-classified-information">Is the project prohibited
-							under federal laws and regulations governing the sharing of classified information? </label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-privacy" type="checkbox" name="exemption-condition"
-							value="exemptByPrivacyRisk">
-						<label class="usa-checkbox__label" for="check-privacy">
-							Does the source code create an identifiable risk to the privacy of an individual?</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="share-it-act-check-none" type="checkbox"
-							name="exemption-condition" value="share-it-act-none">
-						<label class="usa-checkbox__label" for="share-it-act-check-none">None of the above </label>
-					</div>
-				</fieldset>
-				<button class="usa-button margin-top-2" type="button" id="share-it-act"
-					onclick="determineExemptions(event)">Submit</button>
-			</div>
-		</div>
-		<div class="results" style="display: none;">
-			<div class="results-container">
-				<div class="exemption-result"></div>
-			</div>
-			<button class="usa-button" id="share-it-act" onclick="handleClick(event)">Next</button>
-		</div>
-	</div>
-
-	<!-- Exemptions Quiz: M-16-21 -->
-	<div class="exemptions" id="m-16-21" style="display: none;">
-		<div class="exemptions-header">
-			<div class="step-header">
-				<div class="step-number">1c</div>
-				<h2>Is my project exempted from M-16-21?</h2>
-			</div>
-		</div>
-		<div class="exemptions-quiz-container">
-			<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading">
-				Answer the series of questions below to determine if your project falls under the exemption categories
-				according to M-16-21 Act.
-			</h3>
-			<div id="exemptions-quiz">
-				<fieldset class="usa-fieldset">
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-patent-and-ip" type="checkbox"
-							name="exemption-condition" value="exemptByIPRestriction">
-						<label class="usa-checkbox__label" for="check-patnet-and-ip">
-							Is sharing of the source code limited by patent or intellectual property restrictions?
-						</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-agency-systems" type="checkbox"
-							name="exemption-condition" value="exemptByAgencySystem">
-						<label class="usa-checkbox__label" for="check-agency-systems">
-							Does sharing of the source code create an identifiable risk to the stability, security, or
-							integrity of the agency’s systems or personnel?
-						</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-agency-mission" type="checkbox"
-							name="exemption-condition" value="exemptByAgencyMission">
-						<label class="usa-checkbox__label" for="check-agency-mission">
-							Does sharing of the source code create an identifiable risk to agency mission, programs, or
-							operations?
-						</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-CIO" type="checkbox" name="exemption-condition"
-							value="exemptByCIO">
-						<label class="usa-checkbox__label" for="check-CIO">
-							Does the CIO believes it is in the national interest to exempt sharing the source code?
-						</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="check-date" type="checkbox" name="exemption-condition"
-							value="exemptByPolicyDate">
-						<label class="usa-checkbox__label" for="check-date">
-							Was the release was created prior to the M-16-21 policy (August 8, 2016)
-						</label>
-					</div>
-					<div class="usa-checkbox">
-						<input class="usa-checkbox__input" id="m-16-21-check-none" type="checkbox"
-							name="exemption-condition" value="m-16-21-none">
-						<label class="usa-checkbox__label" for="m-16-21-check-none">None of the above </label>
-					</div>
-				</fieldset>
-				<button class="usa-button margin-top-2" type="button" id="m-16-21"
-					onclick="determineExemptions(event)">Submit</button>
-			</div>
-		</div>
-		<div class="results" style="display: none;">
-			<div class="results-container">
-				<div class="exemption-result"></div>
-			</div>
-			<button class="usa-button usa-button--unstyled" id="m-16-21" onclick="handleClick(event)">Try
-				Again</button>
-		</div>
-	</div>
-
-	<!-- Field Auto-Generation Notification -->
-	<div class="usa-alert" id="notification" style="display:none;">
-		<div class="usa-alert__body">
-			<h4 class="usa-alert__heading"></h4>
-			<p class="usa-alert__text" id="notification-message"></p>
-		</div>
-	</div>
-
-	<!-- Field Auto-Generation -->
-	<div class="auto-generation">
-		<div class="auto-generation-header">
-			<div class="step-header">
-				<div class="step-number">2</div>
-				<h2>Auto Generate Fields</h2>
-			</div>
-			<h3 class="usa-heading margin-top-neg-05 margin-bottom-1" id="quiz-subheading"> Enter your repository's
-				GitHub URL in order to automatically pre-fill some of the
-				fields in this form </h3>
-			<p><i>This currently only works on <b>public</b> repositories</i></p>
-		</div>
-		<form id="github-url-form">
-			<label class="usa-label" for="repo-url">GitHub Repository URL</label>
-			<input class="usa-input" id="repo-url" name="repo-url" />
-			<button class="usa-button margin-top-2" id="repo-url-button">Submit</button>
-			<button class="usa-button usa-button--outline margin-top-2" type="button" id="ai-enhance"
-				style="display:none;">Enhance with AI</button>
-		</form>
-	</div>
-
-	<!-- AI Field Suggestions -->
-	<div class="auto-generation" id="ai-panel" style="display:none;">
-		<div class="auto-generation-header">
-			<div class="step-header">
-				<div class="step-number">2b</div>
-				<h2>Draft the remaining fields with AI</h2>
-			</div>
-			<h3 class="usa-heading margin-top-neg-05 margin-bottom-1">Llama 3.2 1B reads your
-				repository's README and drafts the fields that could not be worked out from the
-				repository metadata alone. It runs entirely on your computer so nothing is sent to
-				any server. The first run downloads about 880 MB and caches it for later visits, so keep
-				this tab open while it loads.</h3>
-		</div>
-
-		<div id="ai-controls">
-			<button class="usa-button margin-top-2" type="button" id="ai-run" disabled></button>
-			<button class="usa-button usa-button--outline margin-top-2" type="button" id="ai-cancel"
-				style="display:none;">Cancel</button>
-			<button class="usa-button usa-button--unstyled margin-top-2" type="button"
-				id="ai-clear-cache">Clear cached model files</button>
-		</div>
-
-		<div id="ai-progress-wrap" style="display:none;">
-			<label class="usa-label" for="ai-progress" id="ai-progress-label">Loading model</label>
-			<progress id="ai-progress" max="100" value="0" aria-labelledby="ai-progress-label"></progress>
-			<p class="usa-hint" id="ai-progress-text" aria-live="polite"></p>
-			<pre class="ai-stream" id="ai-stream" aria-live="polite"></pre>
-		</div>
-
-		<div id="ai-review" style="display:none;">
-			<h3 class="usa-heading margin-bottom-05">Review AI drafts</h3>
-			<p class="usa-hint margin-top-0">These are drafted by the model, not read from your
-				repository. Uncheck anything you do not want, edit the text, then apply.
-				<strong>Verify every value before you submit.</strong></p>
-			<fieldset class="usa-fieldset" id="ai-review-list"></fieldset>
-			<button class="usa-button margin-top-2" type="button" id="ai-apply">Apply selected to form</button>
-			<button class="usa-button usa-button--outline margin-top-2" type="button" id="ai-discard">Discard</button>
-		</div>
-	</div>
-
-	<!-- Form header -->
-	<div class="form-subheader">
-		<div class="step-header">
-			<div class="step-number">3</div>
-			<h2>Complete the entire form to generate the code.json file</h2>
-		</div>
-		<p class="usa-heading margin-top-neg-05 margin-bottom-2"><em>A red asterisk (<span style="color:red">*</span>)
-				indicates a required field</em></p>
-	</div>
-
-	<!-- Generated Form -->
-	<div id="formio"></div>
-
-	<!-- code.json Generated Output -->
-	<div id="output">
-		<label class="usa-label" for="json-result"><strong>Your code.json metadata</strong></label>
-		<textarea class="usa-textarea" rows="30" id="json-result" name="json-result" readonly></textarea>
-		<div class="button-actions">
-			<button class="usa-button usa-button--outline" type="button" href="#"
-				onclick="copyToClipboard(event)">Copy</button>
-			<button class="usa-button usa-button--outline" type="button" href="#"
-				onclick="downloadFile(event)">Download</button>
-			<button class="usa-button usa-button--outline" type="button" href="#"
-				onclick="createProjectPR(event)">Create
-				Pull
-				Request</button>
-			<button class="usa-button usa-button--outline" type="button" href="#"
-				onclick="emailFile(event)">Email</button>
-		</div>
-	</div>
-
-</body>
-
+	</body>
 </html>

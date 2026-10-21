@@ -225,7 +225,7 @@ async function preFillFields(repoData, languages, rootFiles) {
         form.getComponent('vcs').setValue('git')
 
         // Updating organization - only option available
-        form.getComponent('organization').setValue('Centers for Medicare & Medicaid Services')
+        form.getComponent('organization').setValue('General Services Administration (GSA)')
 
         // Updating visibility
         form.getComponent('repositoryVisibility').setValue(repoData.private ? 'private' : 'public')
