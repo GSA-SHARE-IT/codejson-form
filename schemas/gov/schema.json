@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://gsa-share-it.github.io/code-json-schema.json",
+    "$id": "https://gsa-share-it.github.io/codejson-schemas/schemas/schema-0.1.0.json",
     "title": "code.json metadata",
     "description": "A metadata standard for software repositories",
     "type": "object",
