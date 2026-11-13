@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://dsacms.github.io/code-json-schema.json",
+    "$id": "https://gsa-share-it.github.io/codejson-schemas/schemas/cms/schema-2.2.0.json",
     "title": "CMS code.json metadata",
     "description": "A metadata standard for software repositories of CMS",
     "type": "object",
